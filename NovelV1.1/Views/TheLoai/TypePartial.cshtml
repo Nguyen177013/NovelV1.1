@@ -1,0 +1,10 @@
+﻿<ul class="subnav">
+    @foreach (var ele in ViewBag.tenloai)
+    {
+        <li>
+            <a href="@Url.Action("Index", "Home", new {id = ele.Value})">@ele.Value</a>
+        </li>
+    }
+</ul>
+
+

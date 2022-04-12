@@ -1,0 +1,204 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+html{
+    font-size: 62.5%;
+}
+:root{
+    --whitecolor: #fff;
+    --cyan: #1e90ff;
+}
+body{
+    background: linear-gradient(120deg, #de98e9 25%, #12d8f6 75%);
+}
+#admin-header{
+    height: 5.6rem;
+    background: linear-gradient(120deg, rgb(116, 115, 115) 25%, #12d8f6 75%);
+    padding: 0.6rem 8rem;
+}
+.white{
+color: var(--whitecolor);
+}
+.cyan{
+    color: var(--cyan);
+}
+#admin-header h1{
+    display: inline-block;
+    font-size: 3.6rem;
+}
+
+.content-admin{
+    background-color: #fff;
+    text-align: center;
+    margin-top: 5%;
+    border-radius: 2rem;
+}
+.content-center{
+    padding: 5rem 0;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.content-header{
+    margin-bottom: 2.3rem;
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+.col-5{
+    margin-top: 1.5rem;
+    flex: 1 1 50%;
+    padding: 1rem;
+    margin-bottom: 5rem;
+    transition: transform 0.5s;
+    font-size: 1.5rem;
+}
+.type_Book,.name_Book,.finance{
+    padding: 1.3rem 4.2rem;
+    border: none;
+    border-radius: 1rem;
+    color: #fff;
+}
+.type_Book{
+    background-color: coral;
+}
+.name_Book{
+    background-color: rgb(38, 166, 166);
+}
+.finance{
+    background-color: black;
+}
+.modal-Create{
+    background: #fff;
+    position: relative;
+    border-radius: 0.5rem;
+}
+.modal-header{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: auto;
+    min-width: 8rem;
+}
+.modal-Type-dialog,
+.modal-Book-dialog{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color:  rgba(0,0,0,0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    animation: modalFadeIn ease 0.8s;
+}
+@keyframes modalFadeIn {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+.modal-close{
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.modal-container{
+    min-height: 35rem;
+    width: 36rem;
+}
+.modal-header{
+    text-align: center;
+    margin-top: 6.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 2rem;
+}
+.modal-body{
+    padding-top: 2.5rem;
+}
+.input-container .modal-account{
+    width: 100%;
+    line-height: 2rem;
+    padding: 1rem 1.2rem;
+    border-radius: 0.8rem;
+    border: 1px solid #ebebeb;
+    background-color: aliceblue;
+}
+.container-login-btn{
+    margin-top: 5.5rem;
+}
+.container-login-btn .btn-submit{
+    line-height: 3.8rem;
+    width: 100%;
+    border: none;
+    background-color: #3b4354;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 0.5rem;
+}
+.container-login-btn:hover .btn-submit{
+    background-color: #212630;
+}
+.modal-register{
+    margin-top: 1.5rem;
+    text-align: center;
+}
+.modal-register a{
+    font-size: 1.4rem;
+}
+
+.Create-book{
+    float: right;
+    margin-top: 1.2rem;
+}
+.input-container{
+    margin: 1.5rem 0;
+}
+.control-label{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: auto;
+    min-width: 8rem;
+    
+}
+.open{
+    display: flex;
+}
+.modal-input{
+    flex: 1;
+    line-height: 2rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 0.2rem;
+    border: 1px solid #ebebeb;
+}
+.btn-select{
+    padding: 0rem 1rem;
+    background: #00aefd;
+    border: none;
+    margin-left: 1rem;
+    border-radius: 0.5rem;
+    color: #fff;
+    cursor: pointer;
+}
+.btn-select:hover{
+    background: #0072a8;
+}
+.modal-Create-dialog .modal-header{
+    margin-top: 2.5rem;
+}
+.modal-Create-dialog .modal-container{
+    width: 32rem;
+}
+.modal-Create{
+    padding: 3rem 5rem 4rem;
+}

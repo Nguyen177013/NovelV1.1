@@ -1,0 +1,33 @@
+﻿@model IEnumerable<NovelV1._1.Models.DTO.Sach>
+<div id="slider">
+    <div class="header-slider">
+        <h2>Loli Light Novel</h2>
+    </div>
+</div>
+<div id="content">
+    <div class="content-Week content-center">
+        @if (string.IsNullOrEmpty(@ViewBag.Find))
+        {
+            <div class="row">
+                <div class="col-5">
+                    <p>Không Tìm Thấy Truyện :<</p>
+                </div>
+            </div>
+        }
+        else
+        {
+            <h2 class="title">Từ Khóa: @ViewBag.Find</h2><hr>
+            <div class="row">
+                @foreach (var ele in Model)
+                {
+                    <div class="col-5">
+                        <a class="g_thumb" href="@Url.Action("Detail","Home",new {id = ele.Sach_ma})"><img src="@ele.Sach_anh" alt=""></a>
+                        <h4 class="book_name"><a href="@Url.Action("Detail","Home",new {id = ele.Sach_ma})">@ele.Sach_ten</a></h4>
+                        <p class="book_type"><a href="@Url.Action("Type", "Home", new {id = ele.TheLoai.TheLoai_ten})">@ele.TheLoai.TheLoai_ten</a></p>
+                        <p class="book_authur"><a href="@Url.Action("Author", "Home", new {id = ele.Sach_TacGia})">@ele.Sach_TacGia</a></p>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>

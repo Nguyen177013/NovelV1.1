@@ -1,0 +1,101 @@
+﻿@model PagedList.IPagedList<NovelV1._1.Models.DTO.Sach>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "listSach";
+    Layout = "~/Areas/Host/Views/Shared/_Layout.cshtml";
+}
+<style>
+    td {
+        background: #d6d2d2;
+    }
+    td,th,table{
+        border:none;
+    }
+</style>
+<div id="content">
+    <div class="content-admin content-center">
+        @Html.ActionLink("Quay Về", "Index", "Admin", new { @class = "btn-select primary-text", @style = "float:left" })
+        <table class="table">
+            <tr>
+                <th style=" background: cornflowerblue;">
+                    Mã Sách
+                </th>
+                <th style="background: blueviolet;">
+                    Ảnh Sách
+                </th>
+                <th style="background: burlywood;">
+                    Tên Sách
+                </th>
+                <th style=" background: chocolate;">
+                    Thể Loại
+                </th>
+                <th style=" background: turquoise;">
+                    Tác Giả
+                </th>
+                <th style=" background: darkgoldenrod;">
+                    Ngày Sản Xuất
+                </th>
+                <th style="background: crimson;"></th>
+            </tr>
+            @foreach (var ele in Model)
+            {
+                <tr>
+                    <td>
+                        @ele.Sach_ma
+                    </td>
+                    <td>
+                        <div class="list_img">
+                            <img src="@ele.Sach_anh" alt="">
+                        </div>
+                    </td>
+                    <td>
+                        <p>
+                        @ele.Sach_ten    
+                        </p>
+                    </td>
+                    <td>
+                        @ele.TheLoai.TheLoai_ten
+                    </td>
+                    <td>
+                        @ele.Sach_TacGia
+                    </td>
+                    <td>
+                        @ele.Sach_ngaySanXuat.ToShortDateString()
+                    </td>
+                    <td>
+                        @Html.ActionLink("Chi Tiết", "Detail_Sach", new { id = ele.Sach_ma })
+                        <br>
+                        <br>
+                        @Html.ActionLink("Sửa", "Edit_Sach", new { id = ele.Sach_ma })
+                        <br>
+                        <br>
+                        @using (Html.BeginForm("Delete_Sach", "Admin", new { id = ele.Sach_ma }))
+                        {
+                            <input type="submit" value="Xóa Sách" class="favorate" />
+                        }
+                        <br>
+                        <br>
+                        @Html.ActionLink("Thêm Tập", "Create_NoiDung", new { id = ele.Sach_ma })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <div>
+            <div>
+                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+            </div>
+            <div class="MenuTrang">
+                @Html.PagedListPager(Model, page => Url.Action("listSach", new { page = page }))
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+        margin: 0 1rem;
+        font-size: 1.7rem;
+    }
+</style>
+

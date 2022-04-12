@@ -1,0 +1,38 @@
+﻿@model IEnumerable<NovelV1._1.Models.DTO.TheLoai>
+@{
+    ViewBag.Title = "listTheLoai";
+    Layout = "~/Areas/Host/Views/Shared/_Layout.cshtml";
+}
+
+<div id="content">
+    <div class="content-admin content-center">
+        @Html.ActionLink("Quay Về", "Index", "Admin", new { @class = "btn-select primary-text", @style = "float:left" })
+        <table class="table">
+            <tr>
+                <th>
+                    Mã Thể Loại
+                </th>
+                <th>
+                    Tên Thể Loại
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var ele in Model)
+            {
+                <tr>
+                    <td>
+                        @ele.TheLoai_ma
+                    </td>
+                    <td>
+                        @ele.TheLoai_ten
+                    </td>
+                    <td>
+                        @Html.ActionLink("Sửa", "Edit_TheLoai", new { id = ele.TheLoai_ma })
+                        <br>
+                        <br>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

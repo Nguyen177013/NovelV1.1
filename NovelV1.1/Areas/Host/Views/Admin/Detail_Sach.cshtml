@@ -1,0 +1,32 @@
+﻿@model IEnumerable<NovelV1._1.Models.DTO.NoiDungSach>
+
+<div class="modal-Create-dialog">
+    <div class="modal-Create">
+        <div class="modal-container">
+            @Html.ActionLink("Quay Về", "listSach", "Admin", new { @class = "btn-select primary-text", @style = "float:left" })
+            <header class="modal-header">
+                @foreach (var ele in Model)
+                {
+                    <h2>@ele.Sach.Sach_ten</h2>
+                    <br />
+                    <p>@ele.Sach.Sach_TacGia</p>
+                    <br />
+                    <p>@ele.Sach.Sach_ngaySanXuat.ToShortDateString()</p>
+                    break;
+                }
+            </header>
+            <div class="modal-body" style="text-align:center;">
+                @foreach (var ele in Model)
+                {
+                    <img src="@ele.Sach.Sach_anh" alt="Alternate Text" />
+                    break;
+                }
+                <br />
+                @foreach (var ele in Model)
+                {
+                    <a href="@Url.Action("Edit_noiDung", new {id = ele.Sach_ma,ep = ele.NoiDungSach_Tap})" style="font-size:1.4rem;display:block;">Tập : @ele.NoiDungSach_Tap</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>

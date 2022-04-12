@@ -1,0 +1,36 @@
+﻿@model NovelV1._1.Models.DTO.TheLoai
+@{
+    ViewBag.Title = "Create_TheLoai";
+    Layout = "~/Areas/Host/Views/Shared/_Layout.cshtml";
+}
+
+<div class="modal-Create-dialog">
+    <div class="modal-Create">
+        <div class="right">
+            @Html.ActionLink("Quay Về", "Index", "Admin", new { @class = "btn-select primary-text" })
+        </div>
+        <div class="modal-container">
+            <header class="modal-header">
+                Thêm Sách
+            </header>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="modal-body">
+                    <div class="input-container">
+                        <label class="control-label" for="">Tên Thể Loại</label>
+                        @Html.EditorFor(model => model.TheLoai_ten, new { htmlAttributes = new { @class = "modal-input" } })
+                        @Html.ValidationMessageFor(model => model.TheLoai_ten, "")
+                    </div>
+                    <div class="container-login-btn">
+                        <button class="btn-submit">
+                            Thêm Thể Loại
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+﻿@model IEnumerable<NovelV1._1.Models.DTO.Sach>
+
+<div id="slider">
+    <div class="header-slider hide-on-mobile">
+        <h2>Loli Light Novel</h2>
+    </div>
+</div>
+
+<div id="content">
+    <div class="content-Week content-center">
+        <h2 class="title">Đề Cập Theo Tuần: </h2>
+        <hr>
+        <div class="row">
+            @foreach (var ele in Model)
+            {
+                <div class="col-5 col-lg-3 col-md-6 col-sm-6 col-6">
+                    <a class="g_thumb" href="@Url.Action("Detail","Home",new {id = ele.Sach_ma, userID = Session["TaiKhoan_maSS"]})"><img src="@ele.Sach_anh" alt=""></a>
+                    <h4 class="book_name"><a href="@Url.Action("Detail","Home",new {id = ele.Sach_ma, userID = Session["TaiKhoan_maSS"]})" title="@ele.Sach_ten">@ele.Sach_ten</a></h4>
+                    <p class="book_type"><a href="@Url.Action("Type", "Home", new {id = ele.TheLoai.TheLoai_ten})">@ele.TheLoai.TheLoai_ten</a></p>
+                    <p class="book_authur"><a href="@Url.Action("Author", "Home", new {id = ele.Sach_TacGia})">@ele.Sach_TacGia </a></p>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="content-Top-Read content-center">
+        <h2 class="title">Tác Phẩm Đọc Nhiều:</h2><hr>
+        <div class="row">
+            @foreach (var ele in Model.OrderByDescending(p => p.Sach_LuotDoc).Take(6))
+            {
+                <div class="col-5">
+                    <a class="g_thumb" href="@Url.Action("Detail","Home",new { id = ele.Sach_ma,userID = Session["TaiKhoan_maSS"] })"><img src="@ele.Sach_anh" alt=""></a>
+                    <h4 class="book_name"><a href="@Url.Action("Detail","Home",new {id = ele.Sach_ma, userID = Session["TaiKhoan_maSS"]})">@ele.Sach_ten</a></h4>
+                    <p class="book_type"><a href="@Url.Action("Type", "Home", new {id = ele.TheLoai.TheLoai_ten})">@ele.TheLoai.TheLoai_ten</a></p>
+                    <p class="book_authur"><a href="@Url.Action("Author", "Home", new {id = ele.Sach_ma})">@ele.Sach_TacGia</a></p>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="content-New content-center">
+        <h2 class="title">Tác Phẩm Mới Nhất:</h2><hr>
+        <div class="row">
+            @foreach (var ele in Model.Where(p => p.Sach_TinhTrang == false))
+            {
+                <div class="col-5">
+                    <a class="g_thumb" href="@Url.Action("Detail","Home",new {id = ele.Sach_ma, userID = Session["TaiKhoan_maSS"]})"><img src="@ele.Sach_anh" alt=""></a>
+                    <h4 class="book_name"><a href="@Url.Action("Detail","Home",new {id = ele.Sach_ma, userID = Session["TaiKhoan_maSS"]})">@ele.Sach_ten</a></h4>
+                    <p class="book_type"><a href="@Url.Action("Type", "Home", new {id = ele.TheLoai.TheLoai_ten})">@ele.TheLoai.TheLoai_ten</a></p>
+                    <p class="book_authur"><a href="@Url.Action("Author", "Home", new {id = ele.Sach_TacGia})">@ele.Sach_TacGia</a></p>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="content-Finished ">
+        <h2 class="title">Tác Phẩm Đã Hoàn Thành:</h2><hr>
+        <div class="cover-books">
+            <div class="row">
+                @foreach (var ele in Model.Where(p => p.Sach_TinhTrang == true))
+                {
+                    <div class="col-5">
+                        <a class="g_thumb" href="@Url.Action("Detail","Home",new {id = ele.Sach_ma, userID = @Session["TaiKhoan_maSS"]})"><img src="@ele.Sach_anh" alt=""></a>
+                        <h4 class="book_name"><a href="@Url.Action("Detail","Home",new {id = ele.Sach_ma,userID = @Session["TaiKhoan_maSS"]})">@ele.Sach_ten</a></h4>
+                        <p class="book_type"><a href="@Url.Action("Type", "Home", new {id = ele.TheLoai.TheLoai_ten})">@ele.TheLoai.TheLoai_ten</a></p>
+                        <p class="book_authur"><a href="@Url.Action("Author", "Home", new {id = ele.Sach_TacGia})">@ele.Sach_TacGia</a></p>
+                    </div>
+                }
+            </div>
+            <div class="next-slide-nav">
+                <button class="move-prev">
+                    <i class="ti-angle-double-left"></i>
+                </button>
+                <button class="move-next">
+                    <i class="ti-angle-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

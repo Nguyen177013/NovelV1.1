@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<div id="content">
+    <div class="content-admin content-center">
+        <h1 class="content-header">Danh Sách Quản Lý</h1>
+        <div class="content-body">
+            <div class="row">
+                <div class="col-5"><input type="submit" value="Quản Lý Thể Loại" class="type_Book"></div>
+                <div class="col-5"><input type="submit" value="Quản Lý Sách" class="name_Book"></div>
+  @*              <div class="col-5"><input type="submit" value="Chi Tiết Doanh Thu" class="finance"></div>*@
+                @*                <div class="col-5">@Html.ActionLink("Về Trang Home", "Index", "Home", new { @class = "finance" })</div>*@
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-Type-dialog">
+    <div class="modal-Create">
+        <div class="modal-container">
+            <header class="modal-header">
+                Quản Lý Thể Loại
+            </header>
+            <div class="modal-body">
+                <div class="container-login-btn">
+                    @Html.ActionLink("Thêm Thể Loại", "Create_TheLoai", "Admin", new { @class = "btn-submit" })
+                </div>
+                <div class="container-login-btn">
+                    <div class="container-login-btn">
+                        @Html.ActionLink("Thư Mục Thể Loại", "listTheLoai", "Admin", new { @class = "btn-submit" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-Book-dialog">
+    <div class="modal-Create">
+        <div class="modal-container">
+            <header class="modal-header">
+                Quản Lý Sách
+            </header>
+            <div class="modal-body">
+                <div class="container-login-btn">
+                    @Html.ActionLink("Thêm Sách", "Create_Sach", "Admin", new { @class = "btn-submit" })
+                </div>
+                <div class="container-login-btn">
+                    @Html.ActionLink("Thư Mục Sách", "listSach", "Admin", new { @class = "btn-submit" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  

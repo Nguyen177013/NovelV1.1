@@ -1,0 +1,96 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/fontawesome-free-6.0.0-web/fontawesome-free-6.0.0-web/css/all.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/icon-font/themify-icons-font/themify-icons/themify-icons.css" rel="stylesheet" />
+    <link href="~/Content/Css/style.css" rel="stylesheet" />
+    <link href="~/Content/Css/Login.css" rel="stylesheet" />
+    <link href="~/Content/Css/info-style.css" rel="stylesheet" />
+    <script src="~/Content/code/jquery-3.6.0.js"></script>
+    <script src="~/Content/code/code.js"></script>
+</head>
+<body>
+    <header id="main-header" class="hide-on-mobile">
+        @if (Session["TaiKhoan_maSS"] != null)
+        {
+            <div class="header-login">
+                <a href="#">
+                    Xin Chào @Session["TaiKhoan_tenDNSS"]
+                    <br />
+                    @Session["TaiKhoan_taiKhoanSS"]
+                </a>
+                @Html.ActionLink("Đăng Xuất", "DangXuat", "TaiKhoan")
+            </div>
+        }
+        else
+        {
+            <div class="header-login">
+                @Html.ActionLink("Đăng Nhập", "DangNhap", "TaiKhoan")
+            </div>
+        }
+        <div class="header-find-item">
+            @using (Html.BeginForm("timSach", "Home", FormMethod.Get))
+            {
+                <input type="text" placeholder="Tìm Kiếm ... " name="ten" value="@ViewBag.Find" class="find-text">
+                <button class="search-submit" type="submit" value="Tìm Kiếm">
+                    <i class="ti-search"></i>
+                </button>
+            }
+        </div>
+        <ul id="nav-header">
+            <li><a href="@Url.Action("Index")">Trang Chủ</a></li>
+            <li><a href="@Url.Action("topRead","Home")">Top Đọc</a></li>
+            <li>
+                <a href="">Thể Loại</a>
+                @{ Html.RenderAction("TypePartial", "TheLoai");}
+            </li>
+            <li><a href="@Url.Action("listYeuThich", "Home", new { userID = @Session["TaiKhoan_maSS"] })">Yêu Thích</a></li>
+        </ul>
+    </header>
+
+    <button id="myBtn">Up</button>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <footer id="main-footer">
+        <div class="row">
+            <div class="box-footer">
+                <a href="" class="footer-title">Loli Light Novel</a>
+                <div class="footer-icon">
+                    <a target="_blank" rel="noopener noreferrer" href="https://discord.gg/qZdwpYvC"><i class="fa-brands fa-discord"></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/ZinYan192"><i class="fa-brands fa-facebook-square"></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href=""><i class="fa-brands fa-instagram-square"></i></a>
+                </div>
+                <p>© 2022 LoliLightNovel</p>
+            </div>
+            <div class="box-footer">
+                <h4 class="footer-title">Teams</h4>
+                <p>Lại Dương Công Bằng</p>
+                <p>Đặng Xuân Phương</p>
+                <p>Nguyễn Đặng Hải Đăng</p>
+                <p>Phan Nguyễn</p>
+            </div>
+        </div>
+        <br>
+        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+        <div class="footer-copyright">
+            create by Team15
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("upload", required: false)
+</body>
+</html>

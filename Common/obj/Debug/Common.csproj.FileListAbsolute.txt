@@ -1,0 +1,6 @@
+C:\Users\HP\Desktop\Bài Tập\Lập Trình Web\Đồ Án\NovelV1.1\Common\bin\Debug\Common.dll
+C:\Users\HP\Desktop\Bài Tập\Lập Trình Web\Đồ Án\NovelV1.1\Common\bin\Debug\Common.pdb
+C:\Users\HP\Desktop\Bài Tập\Lập Trình Web\Đồ Án\NovelV1.1\Common\obj\Debug\Common.csproj.AssemblyReference.cache
+C:\Users\HP\Desktop\Bài Tập\Lập Trình Web\Đồ Án\NovelV1.1\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+C:\Users\HP\Desktop\Bài Tập\Lập Trình Web\Đồ Án\NovelV1.1\Common\obj\Debug\Common.dll
+C:\Users\HP\Desktop\Bài Tập\Lập Trình Web\Đồ Án\NovelV1.1\Common\obj\Debug\Common.pdb

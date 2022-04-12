@@ -1,0 +1,107 @@
+﻿@model NovelV1._1.Models.DTO.Sach
+
+@{
+    ViewBag.Title = "Create_Sach";
+    Layout = "~/Areas/Host/Views/Shared/_Layout.cshtml";
+}
+
+<div class="modal-Create-dialog">
+    <div class="modal-Create">
+        <div class="right">
+            @Html.ActionLink("Quay Về", "Index", "Admin", new { @class = "btn-select primary-text" })
+        </div>
+        <div class="modal-container">
+            <header class="modal-header">
+                Thêm Sách
+            </header>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+        <div class="modal-body">
+            <div class="input-container">
+                <label class="control-label" for="">Tên Sách</label>
+                @Html.EditorFor(model => model.Sach_ten, new { htmlAttributes = new { @class = "modal-input" } })
+                @Html.ValidationMessageFor(model => model.Sach_ten, "")
+            </div>
+            <div class="input-container">
+                <label class="control-label" for="">Loại Sách</label>
+                @Html.DropDownList("type", ViewBag.theloai as SelectList, new { @class = "modal-input" })
+            </div>
+            <div class="input-container">
+                <label class="control-label" for="">Tác Giả</label>
+                @Html.EditorFor(model => model.Sach_TacGia, new { htmlAttributes = new { @class = "modal-input" } })
+                @Html.ValidationMessageFor(model => model.Sach_TacGia, "")
+            </div>
+            <div class="input-container">
+                <label class="control-label" for="">Ảnh</label>
+                @Html.EditorFor(model => model.Sach_anh, new { htmlAttributes = new { @class = "modal-input" } })
+                @Html.ValidationMessageFor(model => model.Sach_anh, "")
+                <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
+                <input type="button" id="btnUpload" value="Chọn" class="btn-select" />
+            </div>
+            <div class="input-container">
+                <label class="control-label" for="">Ngày Sản Xuất :</label>
+                @Html.TextBoxFor(model => model.Sach_ngaySanXuat, "{0:dd/MM/yyyy}", new { type = "date", @class = "modal-input" })
+                @Html.ValidationMessageFor(model => model.Sach_ngaySanXuat, "")
+            </div>
+            <div class="input-container">
+                <label class="control-label" for="">Tóm Tắt</label>
+                @Html.TextAreaFor(model => model.Sach_TomTat, new { htmlAttributes = new { @class = "text-Synopsis" } })
+                @Html.ValidationMessageFor(model => model.Sach_TomTat, "")
+            </div>
+            <div class="input-container">
+                <label class="control-label" for="">Tình Trạng</label>
+                @Html.EditorFor(model => model.Sach_TinhTrang, new { htmlAttributes = new { @class = "modal-input" } })
+                @Html.ValidationMessageFor(model => model.Sach_TinhTrang, "")
+            </div>
+            <div class="input-container">
+                <label class="control-label" for="">Giá</label>
+                @Html.EditorFor(model => model.Sach_gia, new { htmlAttributes = new { @class = "modal-input" } })
+                @Html.ValidationMessageFor(model => model.Sach_gia)
+            </div>
+            <div class="container-login-btn">
+                <button class="btn-submit">
+                    Thêm Sách
+                </button>
+            </div>
+        </div>
+            }
+        </div>
+    </div>
+    @section upload
+{
+        <script>
+            $(function () {
+                $('#btnUpload').click(function () {
+                    $('#fileUpload').trigger('click');
+                });
+            });
+            $('#fileUpload').change(function () {
+                if (window.FormData !== undefined) {
+                    var fileUpload = $('#fileUpload').get(0);
+                    var files = fileUpload.files;
+                    var formData = new FormData();
+                    formData.append('file', files[0]);
+
+                    $.ajax(
+                        {
+                            type: 'POST',
+                            url: '/Home/ProcessUpload',
+                            contentType: false,
+                            processData: false,
+                            data: formData,
+                            success: function (urlImage) {
+                                $('#Sach_anh').val(urlImage);
+                            },
+                            error: function (err) {
+                                alert('Error ', err.statusText);
+                            }
+                        });
+                }
+            });
+        </script>
+    }
+
+</div>

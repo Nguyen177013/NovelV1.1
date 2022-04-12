@@ -1,0 +1,92 @@
+﻿
+@model  NovelV1._1.Models.DTO.NoiDungSach
+<link href="~/Content/Css/read.css" rel="stylesheet" />
+<style>
+    header {
+        display: none;
+    }
+
+    #main-footer {
+        display: none;
+    }
+
+    #myBtn {
+        display: none !important;
+    }
+</style>
+
+@if (ViewBag.check == "no")
+{
+    return;
+}
+<div id="side-menu">
+    @if (Model.NoiDungSach_Tap == 1)
+    {
+    }
+    else
+    {
+        <a href="@Url.Action("Read", "Home", new {id = Model.Sach_ma, ep = Model.NoiDungSach_Tap-1})" class="sub_side">
+            <i class="fa-solid fa-backward"></i>
+        </a>
+    }
+    <a class="sub_side modal_opption">
+        <i class="fa-solid fa-font"></i>
+    </a>
+    <a href="@Url.Action("Detail","Home",new {id = Model.Sach_ma, userID = Session["TaiKhoan_maSS"]})" class="sub_side">
+        <i class="fa-solid fa-house"></i>
+    </a>
+    @if (Model.NoiDungSach_Tap < ViewBag.maxEp)
+    {
+        <a href="@Url.Action("Read", "Home", new {id = Model.Sach_ma, ep = Model.NoiDungSach_Tap+1})" class="sub_side">
+            <i class="fa-solid fa-forward"></i>
+        </a>
+    }
+</div>
+<div id="ReadMain">
+    <div class="content-center">
+        <h1>@Html.DisplayFor(p => p.Sach.Sach_ten)</h1>
+        <h2 class="story_ep"> Tập: @Html.DisplayFor(p => p.NoiDungSach_Tap)</h2>
+        <p class="main-story">
+            @Html.DisplayFor(p => p.NoiDungSach_NoiDung)
+        </p>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $(".main-story").html($(".main-story").html().replaceAll(/[“”"]/g, '<br>'))
+    })
+</script>
+<div class="modal-Opption-dialog">
+    <div class="modal-Opption">
+        <div class="modal-container">
+            <h4 class="modal-header">
+                Tùy Chỉnh
+            </h4>
+            <div class="modal-body">
+                <div class="color-container">
+                    <div class="color">
+                        Màu nền : <span class="opption-color light-gray"></span>
+                        <span class="opption-color deep-blue"></span>
+                        <span class="opption-color slime"></span>
+                        <span class="opption-color wheat"></span>
+                        <span class="opption-color black"></span>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="font">
+                        Kích Thước Chữ : <span style="margin: 0.3rem;" class="toDownFont"><i class="fa-solid fa-angle-left"></i></span><input type="text" placeholder="1.5rem" id="font-size"><span style="margin: 0.3rem;" class="toUpFont"><i class="fa-solid fa-angle-right"></i></span>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="font">
+                        Loại Chữ : <select name="" id="font-style" onchange="textStyle(this.value)">
+                            <option value="1">Time New Roman</option>
+                            <option value="2">Roboto</option>
+                            <option value="3">Nunito</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

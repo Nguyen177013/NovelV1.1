@@ -1,0 +1,37 @@
+﻿@model NovelV1._1.Models.DTO.TheLoai
+@{
+    ViewBag.Title = "Edit_TheLoai";
+    Layout = "~/Areas/Host/Views/Shared/_Layout.cshtml";
+}
+
+<div class="modal-Create">
+    <div class="modal-container">
+        <header class="modal-header">
+            Sửa
+        </header>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.TheLoai_ma)
+
+            <div class="modal-body">
+                <div class="input-container">
+                    <label class="control-label" for="">Tên Loại</label>
+                    @Html.EditorFor(model => model.TheLoai_ten, new { htmlAttributes = new { @class = "modal-input" } })
+                    @Html.ValidationMessageFor(model => model.TheLoai_ten)
+                </div>
+                <div class="container-login-btn">
+                    <button class="btn-submit" value="Save">
+                        Sửa
+                    </button>
+                </div>
+            </div>
+            <div class="right">
+                @Html.ActionLink("Quay Về", "Index", "Admin", new { @class = "btn-select primary-text" })
+            </div>
+        }
+    </div>
+</div>
+

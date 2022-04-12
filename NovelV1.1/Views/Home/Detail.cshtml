@@ -1,0 +1,93 @@
+﻿@model NovelV1._1.Models.DTO.Sach
+
+@{
+    ViewBag.Title = "Detail";
+}
+<div id="slider">
+    <div class="header-slider">
+        <h2>Loli Light Novel</h2>
+    </div>
+</div>
+<div id="content">
+    <div class="content-Info content-center">
+        <div class="top-Info">
+            <p class="info-Title">
+                <a href="@Url.Action("Index")" class="home-Title"><i class="fa-solid fa-house"></i></a>
+                <span>/</span>
+                <a href="@Url.Action("Type", "Home", new {id = Model.TheLoai.TheLoai_ten})" class="type-Title">@Html.DisplayFor(model => model.TheLoai.TheLoai_ten)</a>
+
+                <span>/</span>
+                <span class="name-Title">@Html.DisplayFor(model => model.Sach_ten)</span>
+            </p>
+            <div class="row">
+                <div class="left-info">
+                    <img src="@Html.DisplayFor(model => model.Sach_anh)" alt="">
+                </div>
+                <div class="right-info">
+                    <h2>@Html.DisplayFor(model => model.Sach_ten)</h2>
+                    <p class="info-Detail underline-text">
+                        <a href="@Url.Action("Type", "Home", new {id = Model.TheLoai.TheLoai_ten})" class="info-Title "><i class="fa-brands fa-squarespace"></i>@Html.DisplayFor(model => model.TheLoai.TheLoai_ten)</a>
+                        <i class="fa-solid fa-eye move-right"></i>@Model.Sach_LuotDoc
+                    </p>
+                    <p class="info-Detail ">
+                        Tác Giả: <a href="@Url.Action("Author", "Home", new {id = Model.Sach_TacGia})">@Html.DisplayFor(model => model.Sach_TacGia)</a>
+                    </p>
+
+                    @if (Model.Sach_TinhTrang == false)
+                    {
+                        <p class="info-Detail ">
+                            Tình Trạng: <a class="underline-text" href="">Đang Tiến Hành</a>
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="info-Detail ">
+                            Tình Trạng: <a class="underline-text" href="">Hoàn Thành</a>
+                        </p>
+                    }
+                    <p class="info-Detail ">
+                        Ngày Sản Xuất: @Html.DisplayFor(Model => Model.Sach_ngaySanXuat)
+                    </p>
+                    <div class="read-Btn">
+                        @if (ViewBag.read != null)
+                        {
+                            <a href="@Url.Action("Read", "Home", new {id = Model.Sach_ma, ep = 1})" class="read ">Đọc Sách</a>
+                        }
+                        else
+                        {
+                            <a href="#" class="read" style="cursor:default">Đang Cập Nhật</a>
+                        }
+                        @if (ViewBag.check != null)
+                        {
+                            using (Html.BeginForm("BoYeuThich", "Home", new { sach = Model.Sach_ma, user = Session["TaiKhoan_maSS"] }, FormMethod.Post, new { @class = "inline-block" }))
+                            {
+                                <input type="submit" value="Bỏ Thích" class="add_favorate" />
+                            }
+                        }
+                        else
+                        {
+                            using (Html.BeginForm("SachYeuThich", "Home", new { sach = Model.Sach_ma, user = Session["TaiKhoan_maSS"] }, FormMethod.Post, new { @class = "inline-block" }))
+                            {
+                                <input type="submit" value="Yêu Thích" class="remove_favorate" />
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="content-about">
+                <h3>Tóm Tắt</h3>
+                <div class="content-Synopsis">
+                    <div class="main-contain">
+                        <p>@Html.DisplayFor(p => p.Sach_TomTat)</p>
+                    </div>
+                    <button class="read-More"><i class="fa-solid fa-caret-down"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $(".main-contain p ").val().replace(" ","<br />")
+    })
+</script>
